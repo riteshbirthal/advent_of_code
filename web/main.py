@@ -88,6 +88,11 @@ class YearManager:
 mgr = YearManager(YEARS_DIR)
 
 
+@app.get("/health", status_code=200)
+async def health():
+    return {"status": "ok"}
+
+
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request):
     years = mgr.available_years()
