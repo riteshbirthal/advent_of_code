@@ -133,9 +133,4 @@ The UI will use the provided input to compute the day's parts; if you reset the 
 **API**
 - `GET /api/day/<n>` — returns JSON: `{"day": n, "part1": ..., "part2": ...}`
 
-> The UI runs locally and uses the same solver code as `main.py`. Do **not** publish your private `input.txt` files.
-
-If you'd like, I can also:
-- add `.gitignore` entries to exclude personal `input.txt` files, or
-- add a small `run_all.py` runner that executes every day's `main.py` and prints results.
 
