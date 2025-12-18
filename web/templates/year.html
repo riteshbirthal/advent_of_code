@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AoC Solutions — {{ year }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="back" href="{{ request.url_for('index') }}">← Back</a>
+    <h1>{{ year.lstrip('Yy') }}</h1>
+    <p class="lead">Select a day to view or run the solution.</p>
+  </header>
+
+  <main class="container">
+    <div class="page-wrapper">
+      <div class="grid">
+        {% for day in days %}
+        <a class="card" href="{{ request.url_for('day_get', year=year, day=day) }}">
+          <div class="day">Day {{ day }}</div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Deployed via GitHub Actions (GHCR). Runs solver code — keep <code>input.txt</code> private. Server deployment planned; see the README for details.</footer>
+</body>
+</html>

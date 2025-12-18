@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AoC Solutions — {{ year }} Day {{ result.day }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header small">
+    <a class="back" href="{{ request.url_for('index') }}">← Back</a>
+    <div class="hero">
+      <h1>{{ year.lstrip('Yy') }} — Day {{ result.day }}</h1>
+      <p class="hero-sub">Run the solver for this day's puzzle — upload an input file or paste it below. Thousands separators (e.g., 62,817) are ignored. Do not paste copyrighted puzzle text; use your own inputs only.</p>
+      <p class="meta"><a href="{{ request.url_for('year_view', year=year) }}">← Back to {{ year.lstrip('Yy') }}</a></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-wrapper">
+      <div class="grid-layout">
+        <aside class="left">
+          <form id="input-form" method="post" enctype="multipart/form-data" class="input-form" action="{{ request.url_for('day_post', year=year, day=result.day) }}">
+            <label class="file-label">Upload input file
+              <input type="file" name="input_file" id="input_file" accept=".txt" aria-label="Upload input file" aria-describedby="input_help" />
+            </label>
+
+            <label class="paste-label">Or paste input
+              <textarea name="input_text" id="input_text" placeholder="Paste input here..." aria-label="Paste input" aria-describedby="input_help">{{ provided_input or '' }}</textarea>
+            </label>
+
+            <p id="input_help" class="meta">If you leave the input blank, the solver will use the day's <code>input.txt</code> file. Keep inputs private — do not upload or paste copyrighted puzzle statements.</p>
+
+            <div class="form-actions">
+              <button id="run-btn" type="submit" class="btn primary">► Run</button>
+              <button id="reset-btn" type="button" class="btn secondary" onclick="window.location='{{ request.url_for('day_get', year=year, day=result.day) }}'">↺ Reset</button>
+            </div>
+          </form>
+        </aside>
+
+        <section class="right">
+          <div class="result-header">
+            <h2>Results</h2>
+            <div class="controls">
+              <button id="copy-all" class="small-btn" title="Copy results">Copy</button>
+              <a href="{{ request.url_for('api_get_day', year=year, day=result.day) }}" class="small-link">JSON</a>
+            </div>
+          </div>
+
+          <div id="results" class="result-card" aria-live="polite">
+            <section class="part">
+              <h3>Part 1</h3>
+              <div class="value"><pre id="part1">{{ result.part1 }}</pre> <button class="copy-btn" data-target="part1">Copy</button></div>
+            </section>
+            <section class="part">
+              <h3>Part 2</h3>
+              <div class="value"><pre id="part2">{{ result.part2 }}</pre> <button class="copy-btn" data-target="part2">Copy</button></div>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+
+  <footer class="footer">Deployed via GitHub Actions (GHCR). Runs solver code — keep <code>input.txt</code> private. See the README for deployment details.</footer>
+
+  <script>
+    // When a file is selected, fill the textarea with its contents for review
+    const fileInput = document.getElementById('input_file');
+    const textArea = document.getElementById('input_text');
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => { textArea.value = ev.target.result; };
+        reader.readAsText(f, 'utf-8');
+      });
+    }
+  </script>
+</body>
+</html> 

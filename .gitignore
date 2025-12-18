@@ -1,0 +1,89 @@
+# General
+# Ignore OS and editor temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+*.swo
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+.env.*
+.python-version
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+*.egg
+*.whl
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+.coverage.xml
+htmlcov/
+.cache
+
+# Type checking / caches
+.mypy_cache/
+.pytype/
+.pyre/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node / frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+/dist/
+/build/
+.cache/
+.next/
+.out/
+.parcel-cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Database and local files
+*.sqlite3
+*.sqlite
+*.db
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+
+# Misc
+coverage/
+coverage.*
+
+# Keep this file tracked; add project-specific ignores below as needed
+.AOC

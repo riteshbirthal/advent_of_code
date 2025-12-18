@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AoC Solutions — Index</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Advent of Code — Solutions</h1>
+    <p class="lead">Browse available years and runtimes, then select a Year → Day to run solutions.</p>
+  </header>
+
+  <main class="container">
+    <div class="page-wrapper">
+      <div class="grid">
+        {% for year in years %}
+        <a class="card" href="{{ request.url_for('year_view', year=year) }}">
+          <div class="day">{{ year.lstrip('Yy') }}</div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Deployed via GitHub Actions (GHCR). Runs solver code — keep <code>input.txt</code> private. Server deployment planned; see the README for details.</footer>
+</body>
+</html>
