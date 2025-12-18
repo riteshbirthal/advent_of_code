@@ -26,18 +26,28 @@ cd Day_6 && python main.py
 ## Tests ✅
 Some days include sample or test inputs (e.g., `test_input.txt`). If you want to add automated tests, consider using `pytest` and place tests under a `tests/` folder or alongside modules with the `test_*.py` convention.
 
-## Repository structure
+## Project structure
 ```
-AoC'25/
-├─ Day_1/
-│  ├─ main.py
-│  ├─ input.txt
-│  └─ ...
-├─ Day_2/
-│  └─ ...
+advent_of_code/
+├─ web/                   # FastAPI app (templates, static, `web/main.py`)
+├─ Y2025/ or 2025/        # Year folders; each contains `Day_<n>/` with `main.py` and `input.txt`
+├─ 2024/
+├─ Dockerfile
+├─ .github/workflows/     # CI workflow builds & pushes image to GHCR
 ├─ .gitignore
 └─ README.md
 ```
+
+## Recent updates
+- Migrated the web UI to **FastAPI** (`web/main.py`), replacing the old Flask implementation for an async, production-ready app.
+- Added a responsive web UI to browse available **years** and **days**, run solvers with **file upload** or **pasted input**, and copy results.
+- Implemented a **YearManager** that dynamically discovers year directories and supports names like `Y2025` (case-insensitive). Labels in the UI strip leading `Y` when displaying.
+- Added **input normalization**: thousands separators (e.g., `62,817`) are removed automatically and whitespace is normalized before parsing. Solver parse errors are surfaced as friendly HTTP 400 errors in the UI.
+- Improved UX: hero header, centered layout, result copy buttons, loading state, and accessible controls (keyboard focus, ARIA attributes).
+- Added a `Dockerfile` and a GitHub Actions workflow (`.github/workflows/build-and-push.yml`) to build and publish container images to **GitHub Container Registry (GHCR)** on push to `main`.
+- Expanded `.gitignore` to cover Python, Node, editor files, OS artifacts, build outputs, and optional rules to ignore `input.txt` files — **do not publish** your personal AoC `input.txt` files.
+
+(See the sections below for Web UI, Docker & GitHub deployment details.)
 
 ## Privacy & Publishing ⚠️
 If you intend to publish this repository publicly (e.g., GitHub):
